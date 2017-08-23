@@ -1,0 +1,1 @@
+..\packages\FluentMigrator.1.6.2\tools\Migrate.exe --connectionString "ReportingServicesProvider" --connectionStringConfigPath "ReportingServicesProvider.dll" --provider sqlserver2014 --assembly "ReportingServicesProvider.DbMigrations.dll" --task rollback
