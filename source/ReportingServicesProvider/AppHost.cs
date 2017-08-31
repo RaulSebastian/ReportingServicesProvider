@@ -17,7 +17,10 @@ namespace ReportingServicesProvider
         /// Base constructor requires a Name and Assembly where web service implementation is located
         /// </summary>
         public AppHost()
-            : base("ReportingServicesProvider", typeof(ServersService).Assembly) { }
+            : base("ReportingServicesProvider", typeof(ServersService).Assembly)
+        {
+            JsConfig.TreatEnumAsInteger = true;
+        }
 
         /// <summary>
         /// Application specific configuration
