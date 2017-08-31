@@ -19,6 +19,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documentation", "documentat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.DbMigrations", "ReportingServicesProvider.DbMigrations\ReportingServicesProvider.DbMigrations.csproj", "{6673C302-4E42-4BDC-B301-73C60DEDFCF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.ServiceModel.Tests", "ReportingServicesProvider.ServiceModel.Tests\ReportingServicesProvider.ServiceModel.Tests.csproj", "{BF48C102-7669-4D47-AF29-C786FD6BF56D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.Logic", "ReportingServicesProvider.Logic\ReportingServicesProvider.Logic.csproj", "{CAA5322A-7A02-4BD5-9DAE-5D2DB7F414EE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
