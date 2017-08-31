@@ -7,6 +7,7 @@ namespace ReportingServicesProvider
     {
         protected void Application_Start(object sender, EventArgs e)
         {
+            Licensing.RegisterLicenseFromFileIfExists("~/ServiceStackLicense.txt".MapHostAbsolutePath());
             new AppHost().Init();
         }
     }

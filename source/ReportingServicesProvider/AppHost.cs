@@ -4,7 +4,7 @@ using ReportingServicesProvider.ServiceInterface;
 using ServiceStack.Api.Swagger;
 using ServiceStack.Data;
 using ServiceStack.OrmLite;
-using ServiceStack.OrmLite.SqlServer;
+using ServiceStack.Text;
 
 //using ServiceStack.OrmLite;
 //using ServiceStack.OrmLite.SqlServer;
@@ -28,7 +28,7 @@ namespace ReportingServicesProvider
         /// </summary>
         public override void Configure(Container container)
         {
-            //TODO: add documentation for used used features
+            //TODO: add documentation for used features
             Plugins.Add(new SwaggerFeature());
             Plugins.Add(new PostmanFeature());
 
