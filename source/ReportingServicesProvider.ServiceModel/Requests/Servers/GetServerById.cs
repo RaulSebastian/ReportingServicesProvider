@@ -3,8 +3,8 @@ using ServiceStack;
 
 namespace ReportingServicesProvider.ServiceModel.Requests.Servers
 {
-    [Route("/Servers/{Id}", "Get")]
-    public class GetServerById : IReturn<ReportingServer>
+    [Route("/Servers/{id}", "Get")]
+    public class GetServerById : IReturn<Server>
     {
         [ApiMember(IsRequired = true)]
         public int Id { get; set; }

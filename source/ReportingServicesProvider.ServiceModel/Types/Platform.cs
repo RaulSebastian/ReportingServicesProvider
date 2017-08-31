@@ -1,6 +1,6 @@
 namespace ReportingServicesProvider.ServiceModel.Types
 {
-    public enum ReportingPlatform
+    public enum Platform
     {
         SqlServerReportingServices = 1
     }

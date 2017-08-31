@@ -1,12 +1,11 @@
 using ReportingServicesProvider.ServiceModel.Types;
 using ServiceStack;
-using ServiceStack.DataAnnotations;
 
-namespace ReportingServicesProvider.ServiceModel.Requests.Servers
+namespace ReportingServicesProvider.ServiceModel.Requests.Reports
 {
-    [Route("/Servers", "Put")]
-    [Route("/Servers/{id}", "Put")]
-    public class UpdateServerById : IReturn<Server>
+    [Route("/Reports", "Put")]
+    [Route("/Reports/{id}", "Put")]
+    public class UpdateReportById : IReturn<Server>
     {
         [ApiMember(IsRequired = true)]
         public int Id { get; set; }

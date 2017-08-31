@@ -1,10 +1,11 @@
 ﻿using ReportingServicesProvider.ServiceModel.Types;
 using ServiceStack;
 
-namespace ReportingServicesProvider.ServiceModel.Requests.Servers
+namespace ReportingServicesProvider.ServiceModel.Requests.Reports
 {
-    [Route("/Servers", "Post")]
-    public class PostServer : IReturn<Server>
+    [Route("/Reports", "Post")]
+    [Route("/Servers/Reports", "Post")]
+    public class PostReport : IReturn<Report>
     {
         [ApiMember(IsRequired = true)]
         public string Name { get; set; }

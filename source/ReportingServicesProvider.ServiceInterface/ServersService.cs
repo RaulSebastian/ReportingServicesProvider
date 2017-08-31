@@ -1,68 +1,53 @@
-﻿using System.Collections.Generic;
-using ServiceStack;
+﻿using System;
+using System.Data;
+using System.Linq;
+using System.Net;
+using ReportingServicesProvider.Logic.Model.Reporting;
+using ReportingServicesProvider.Logic.Repositories;
 using ReportingServicesProvider.ServiceModel.Requests.Servers;
 using ReportingServicesProvider.ServiceModel.Types;
+using ServiceStack;
 using ServiceStack.Data;
-using ServiceStack.OrmLite;
+using Server = ReportingServicesProvider.Logic.Model.Reporting.Server;
 
 namespace ReportingServicesProvider.ServiceInterface
 {
     public class ServersService : Service
     {
-        private readonly IDbConnectionFactory _dbFactory = HostContext.Container.Resolve<IDbConnectionFactory>();
+        private readonly ServerRepository _serverRepository =
+            new ServerRepository(HostContext.Container.Resolve<IDbConnectionFactory>());
 
-        public object Get(GetServerList request)
-        {
-            using (var db = _dbFactory.Open())
-            {
-                return db.From<ReportingServer>().Where(rs => rs.Active);
-            }
-        }
+        public object Get(GetServerList request) => _serverRepository.ReadAll().ToDto();
 
-        public object Get(GetServerById request)
-        {
-            using (var db = _dbFactory.Open())
-            {
-                return db.Single<ReportingServer>(rs => rs.Id == request.Id && rs.Active);
-            }
-        }
+        public object Get(GetServerNames request) => _serverRepository.ReadAll().Select(r => r.Name);
 
-        public object Get(GetServerByName request)
-        {
-            using (var db = _dbFactory.Open())
-            {
-                return db.Single<ReportingServer>(rs => rs.Name == request.Name && rs.Active);
-            }
-        }
+        public object Get(GetServerById request) => _serverRepository.Read(request.Id).ToDto();
+
+        public object Get(GetServerByName request) => _serverRepository.ReadByName(request.Name).ToDto();
 
         public object Post(PostServer request)
         {
-            return new ReportingServer
+            var existingServer = _serverRepository.ReadByName(request.Name);
+            if (existingServer != null)
             {
-                Name = request.ServerName,
-                ReportingPlatform = request.Platform ?? Defaults.DefaultReportingPlatform,
-                Url = request.Url
-            };
+                throw new HttpError(HttpStatusCode.Conflict, $"A server mamed '{request.Name}' already exists.");
+            }
+            return _serverRepository.Create(new Server().PopulateWith(request)).ToDto();
         }
 
         public object Put(UpdateServerById request)
         {
-            return new ReportingServer
+            var existingServer = _serverRepository.Read(request.Id);
+            if (existingServer == null)
             {
-                Name = request.ServerName,
-                ReportingPlatform = request.Platform ?? Defaults.DefaultReportingPlatform,
-                Url = request.Url
-            };
+                throw new HttpError(HttpStatusCode.NotFound, $"ServerId {request.Id} does not exist.");
+            }
+            return _serverRepository.Update(new Server().PopulateWith(request));
         }
 
-        public void Delete(DeleteServerById request)
-        {
+        public int Delete(DeleteServerById request) => _serverRepository.Delete(request.Id);
 
-        }
+        public int Delete(DeleteServerByName request) => _serverRepository.Delete(request.Name);
 
-        public void Delete(DeleteServerByName request)
-        {
-
-        }
     }
 }

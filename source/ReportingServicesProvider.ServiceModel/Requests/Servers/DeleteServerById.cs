@@ -2,7 +2,7 @@ using ServiceStack;
 
 namespace ReportingServicesProvider.ServiceModel.Requests.Servers
 {
-    [Route("/Servers/{Id}", "Delete")]
+    [Route("/Servers/{id}", "Delete")]
     public class DeleteServerById
     {
         [ApiMember(IsRequired = true)]
