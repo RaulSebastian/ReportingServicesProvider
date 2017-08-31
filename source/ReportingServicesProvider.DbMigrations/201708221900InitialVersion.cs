@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 using FluentMigrator.Runner.Extensions;
-
+using Tables = ReportingServicesProvider.DbMigrations.MetaData.Tables;
 
 namespace ReportingServicesProvider.DbMigrations
 {
@@ -9,28 +9,41 @@ namespace ReportingServicesProvider.DbMigrations
     {
         public override void Up()
         {
-            Create.Table(MetaData.Tables.ReportingPlatform.TableName)
-                    .WithDescription(MetaData.Tables.ReportingPlatform.Description)
-                .WithColumn(MetaData.Tables.ReportingPlatform.IdColumn).AsInt32().Identity().PrimaryKey()
+            Create.Table(Tables.Platform.TableName)
+                .WithDescription(Tables.Platform.TableDescription)
+                .WithColumn(Tables.Platform.IdColumn).AsInt32().Identity().PrimaryKey()
+                    .WithIdColumnDescription()
+                .WithColumn(Tables.Platform.NameColumn).AsString().NotNullable()
+                    .WithColumnDescription(Tables.Platform.NameDescription);
 
-                .WithColumn(MetaData.Tables.ReportingPlatform.NameColumn).AsString().NotNullable();
-
-            Insert.IntoTable(MetaData.Tables.ReportingPlatform.TableName)
-                .Row( new { Id = 1, Name = "SqlServerReportingServices" })
+            Insert.IntoTable(Tables.Platform.TableName)
+                .Row(new {Id = 1, Name = "SqlServerReportingServices"})
                 .WithIdentityInsert();
 
-            Create.Table("ReportingServer")
-                .WithDescription("Stores definitions of registered reporting servers.")
-                .WithColumn("Id").AsInt32().Identity().PrimaryKey()
-                .WithColumnDescription("")
-                .WithColumn("Name").AsString().Unique().NotNullable()
-                .WithColumn("ReportingPlatform").AsInt32().NotNullable()
-                .ForeignKey(MetaData.Tables.ReportingPlatform.TableName, MetaData.Tables.ReportingPlatform.IdColumn)
-                .WithColumnDescription("")
-                .WithColumn("Url").AsString().NotNullable()
-                .WithColumn("Created").AsDateTime().NotNullable().WithDefaultValue("SYSDATETIME()") //TODO: move to custom fluent extensions
-                .WithColumn("Modified").AsDateTime().NotNullable().WithDefaultValue("SYSDATETIME()")
-                .WithColumn("Active").AsBoolean().NotNullable().WithDefaultValue(true);
+            Create.Table(Tables.Server.TableName)
+                .WithDescription(Tables.Server.TableDescription)
+                .WithColumn(Tables.Server.IdColumn).AsInt32().Identity().PrimaryKey()
+                    .WithIdColumnDescription()
+                .WithColumn(Tables.Server.NameColumn).AsString().Unique().NotNullable()
+                    .WithColumnDescription(Tables.Platform.NameDescription)
+                .WithColumn(Tables.Server.ReportingPlatformColumn).AsInt32().NotNullable()
+                    .ForeignKeyWithDescription(Tables.Platform.TableName, Tables.Platform.IdColumn)
+                .WithColumn(Tables.Server.UrlColumn).AsString().NotNullable()
+                    .WithColumnDescription(Tables.Server.UrlDescription)
+                .WithSystemColumns();
+
+            Create.Table(Tables.Report.TableName)
+                .WithDescription(Tables.Report.TableDescription)
+                .WithColumn(Tables.Report.IdColumn).AsInt32().Identity().PrimaryKey()
+                    .WithIdColumnDescription()
+                .WithColumn(Tables.Report.NameColumn).AsString().NotNullable()
+                    .WithDescription(Tables.Report.NameDescription)
+                .WithColumn(Tables.Report.ServerColumn).AsInt32().NotNullable()
+                    .ForeignKeyWithDescription(Tables.Server.TableName, Tables.Server.IdColumn)
+                .WithColumn(Tables.Report.PathColumn).AsString().NotNullable()
+                    .WithColumnDescription(Tables.Report.PathDescription)
+                //TODO: check if last exec / call is needed as attribute
+                .WithSystemColumns();
         }
     }
 }

@@ -47,8 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="201708221900InitialVersion.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="MetaData\DefaultValues.cs" />
-    <Compile Include="MetaData\Tables\ReportingPlatform.cs" />
+    <Compile Include="MetaData\Tables\Platform.cs" />
+    <Compile Include="MetaData\Tables\Report.cs" />
+    <Compile Include="MetaData\Tables\Server.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
