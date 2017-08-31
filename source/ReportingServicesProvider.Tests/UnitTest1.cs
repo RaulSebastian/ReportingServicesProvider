@@ -1,14 +1,14 @@
 ﻿using System;
-using NUnit.Framework;
 using ServiceStack;
 using ServiceStack.Testing;
-using ReportingServicesProvider.ServiceModel;
+using ReportingServicesProvider;
 using ReportingServicesProvider.ServiceInterface;
+using Xunit;
 
 namespace ReportingServicesProvider.Tests
 {
-    [TestFixture]
-    public class UnitTests
+    [Trait("Category","Unit")]
+    public class UnitTests : IDisposable
     {
         private readonly ServiceStackHost appHost;
 
@@ -24,13 +24,12 @@ namespace ReportingServicesProvider.Tests
             .Init();
         }
 
-        [OneTimeTearDown]
-        public void TestFixtureTearDown()
+        public void Dispose()
         {
             appHost.Dispose();
         }
 
-        [Test]
+        [Fact]
         public void Test_Method1()
         {
             //var service = appHost.Container.Resolve<ServersService>();
