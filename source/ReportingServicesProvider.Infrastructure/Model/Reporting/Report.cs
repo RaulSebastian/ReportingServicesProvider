@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using ServiceStack.DataAnnotations;
 
-namespace ReportingServicesProvider.Logic.Model.Reporting
+namespace ReportingServicesProvider.Infrastructure.Model.Reporting
 {
     public class Report : Entity
     {
@@ -12,10 +12,11 @@ namespace ReportingServicesProvider.Logic.Model.Reporting
         [Required]
         public string Path { get; set; }
 
-        [Reference, Alias("ReportingServerId")]
-        public Server Server { get; set; }
-        
-        public DateTime Modified { get; set; }
+        [References(typeof(Server)),
+         Alias("ReportingServerId")]
+        public int Server { get; set; }
+
+        public DateTime Modified { get; set; } = DateTime.Now;
 
         [Ignore]
         public DateTime Created { get; set; } = DateTime.Now;

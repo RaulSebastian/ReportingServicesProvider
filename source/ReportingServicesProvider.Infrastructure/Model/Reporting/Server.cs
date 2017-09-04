@@ -2,7 +2,7 @@
 using System.Runtime.Serialization;
 using ServiceStack.DataAnnotations;
 
-namespace ReportingServicesProvider.Logic.Model.Reporting
+namespace ReportingServicesProvider.Infrastructure.Model.Reporting
 {
     [Alias("ReportingServer")]
     public class Server : Entity

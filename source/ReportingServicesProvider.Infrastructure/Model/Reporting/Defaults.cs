@@ -1,4 +1,4 @@
-﻿namespace ReportingServicesProvider.Logic.Model.Reporting
+﻿namespace ReportingServicesProvider.Infrastructure.Model.Reporting
 {
     public static class Defaults
     {

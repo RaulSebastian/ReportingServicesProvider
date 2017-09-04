@@ -1,4 +1,4 @@
-﻿namespace ReportingServicesProvider.Logic.Model
+﻿namespace ReportingServicesProvider.Infrastructure.Model
 {
     public abstract class ValueObject
     {

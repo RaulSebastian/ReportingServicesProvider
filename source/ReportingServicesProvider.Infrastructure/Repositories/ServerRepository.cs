@@ -1,26 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
+using ReportingServicesProvider.Infrastructure.Model.Reporting;
 using ServiceStack.Data;
 using ServiceStack.OrmLite;
-using ReportingServicesProvider.Logic.Model.Reporting;
 
-namespace ReportingServicesProvider.Logic.Repositories
+namespace ReportingServicesProvider.Infrastructure.Repositories
 {
     public class ServerRepository
     {
         private readonly IDbConnectionFactory _dbFactory;
 
-        private static Server InactiveReportingServer
+        private static Server InactiveReportingServer(string oldName)
             => new Server
             {
                 Active = false,
-                Name = $"_deleted_{DateTime.Now:yyyyMMddHHmmssmmm}",
+                Name = $"{oldName}_deleted_{DateTime.Now:yyyyMMddHHmmssmmm}",
                 Modified = DateTime.Now
             };
 
         public ServerRepository(IDbConnectionFactory dbFactory)
         {
             _dbFactory = dbFactory;
+        }
+
+        public Server Create(Server server)
+        {
+            using (var db = _dbFactory.Open())
+            {
+                var existing = db.Single<Server>(
+                    rs => (
+                              rs.Id == server.Id
+                              || rs.Name == server.Name
+                          )
+                          && rs.Active);
+                if (existing != null)
+                    return null;
+
+                db.Save(server);
+            }
+            return server;
         }
 
         public List<Server> ReadAll()
@@ -67,29 +85,16 @@ namespace ReportingServicesProvider.Logic.Repositories
             return server;
         }
 
-        public Server Create(Server server)
-        {
-            using (var db = _dbFactory.Open())
-            {
-                var existing = db.Single<Server>(
-                    rs => (
-                              rs.Id == server.Id
-                              || rs.Name == server.Name
-                          )
-                          && rs.Active);
-                if (existing != null)
-                    return null;
-
-                db.Save(server);
-            }
-            return server;
-        }
-
         public int Delete(string name)
         {
             using (var db = _dbFactory.Open())
             {
-                return db.UpdateOnly(InactiveReportingServer
+                var existing = db.Single<Server>(
+                    rs => rs.Name == name && rs.Active);
+                if (existing == null)
+                    return 0;
+
+                return db.UpdateOnly(InactiveReportingServer(existing.Name)
                     , f => new { f.Active, f.Name, f.Modified }
                     , rs => rs.Name == name);
             }
@@ -99,7 +104,12 @@ namespace ReportingServicesProvider.Logic.Repositories
         {
             using (var db = _dbFactory.Open())
             {
-                return db.UpdateOnly(InactiveReportingServer
+                var existing = db.Single<Server>(
+                    rs => rs.Id == id && rs.Active);
+                if (existing == null)
+                    return 0;
+
+                return db.UpdateOnly(InactiveReportingServer(existing.Name)
                     , f => new { f.Active, f.Name, f.Modified }
                     , rs => rs.Id == id);
             }

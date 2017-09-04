@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.ServiceModel.Tests", "ReportingServicesProvider.ServiceModel.Tests\ReportingServicesProvider.ServiceModel.Tests.csproj", "{BF48C102-7669-4D47-AF29-C786FD6BF56D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.Logic", "ReportingServicesProvider.Logic\ReportingServicesProvider.Logic.csproj", "{CAA5322A-7A02-4BD5-9DAE-5D2DB7F414EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.Infrastructure", "ReportingServicesProvider.Infrastructure\ReportingServicesProvider.Infrastructure.csproj", "{CAA5322A-7A02-4BD5-9DAE-5D2DB7F414EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

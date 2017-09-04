@@ -7,8 +7,8 @@
     <ProjectGuid>{CAA5322A-7A02-4BD5-9DAE-5D2DB7F414EE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ReportingServicesProvider.Logic</RootNamespace>
-    <AssemblyName>ReportingServicesProvider.Logic</AssemblyName>
+    <RootNamespace>ReportingServicesProvider.Infrastructure</RootNamespace>
+    <AssemblyName>ReportingServicesProvider.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

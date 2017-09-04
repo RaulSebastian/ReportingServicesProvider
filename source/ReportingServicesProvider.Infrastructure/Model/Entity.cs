@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using ServiceStack.DataAnnotations;
 
-namespace ReportingServicesProvider.Logic.Model
+namespace ReportingServicesProvider.Infrastructure.Model
 {
     public abstract class Entity
     {
