@@ -76,9 +76,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ReportingServicesProvider.Logic\ReportingServicesProvider.Logic.csproj">
+    <ProjectReference Include="..\ReportingServicesProvider.Infrastructure\ReportingServicesProvider.Infrastructure.csproj">
       <Project>{caa5322a-7a02-4bd5-9dae-5d2db7f414ee}</Project>
-      <Name>ReportingServicesProvider.Logic</Name>
+      <Name>ReportingServicesProvider.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\ReportingServicesProvider.ServiceModel\ReportingServicesProvider.ServiceModel.csproj">
       <Project>{53E82AC1-DD1D-4C66-B55F-F9F4ACFB2F40}</Project>

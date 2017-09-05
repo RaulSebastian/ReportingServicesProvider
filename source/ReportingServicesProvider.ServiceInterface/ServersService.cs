@@ -1,21 +1,20 @@
-﻿using System;
-using System.Data;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
-using ReportingServicesProvider.Logic.Model.Reporting;
-using ReportingServicesProvider.Logic.Repositories;
+using ReportingServicesProvider.Infrastructure.Repositories;
 using ReportingServicesProvider.ServiceModel.Requests.Servers;
-using ReportingServicesProvider.ServiceModel.Types;
 using ServiceStack;
 using ServiceStack.Data;
-using Server = ReportingServicesProvider.Logic.Model.Reporting.Server;
 
 namespace ReportingServicesProvider.ServiceInterface
 {
     public class ServersService : Service
     {
-        private readonly ServerRepository _serverRepository =
-            new ServerRepository(HostContext.Container.Resolve<IDbConnectionFactory>());
+        private IServerRepository _serverRepository = new ServerRepository(HostContext.Container.Resolve<IDbConnectionFactory>());
+
+        public void InjectRepository(IServerRepository serverRepository)
+        {
+            _serverRepository = serverRepository;
+        }
 
         public object Get(GetServerList request) => _serverRepository.ReadAll().ToDto();
 
@@ -32,7 +31,7 @@ namespace ReportingServicesProvider.ServiceInterface
             {
                 throw new HttpError(HttpStatusCode.Conflict, $"A server mamed '{request.Name}' already exists.");
             }
-            return _serverRepository.Create(new Server().PopulateWith(request)).ToDto();
+            return _serverRepository.Create(request.ToModel()).ToDto();
         }
 
         public object Put(UpdateServerById request)
@@ -42,12 +41,11 @@ namespace ReportingServicesProvider.ServiceInterface
             {
                 throw new HttpError(HttpStatusCode.NotFound, $"ServerId {request.Id} does not exist.");
             }
-            return _serverRepository.Update(new Server().PopulateWith(request));
+            return _serverRepository.Update(request.ToModel()).ToDto();
         }
 
         public int Delete(DeleteServerById request) => _serverRepository.Delete(request.Id);
 
         public int Delete(DeleteServerByName request) => _serverRepository.Delete(request.Name);
-
     }
 }

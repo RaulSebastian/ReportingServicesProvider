@@ -32,13 +32,12 @@ namespace ReportingServicesProvider
             Plugins.Add(new SwaggerFeature());
             Plugins.Add(new PostmanFeature());
 
-            container.Register<IDbConnectionFactory>(c =>
-                new OrmLiteConnectionFactory(
-                    @"Data Source=(localdb)\ProjectsV13;Initial Catalog=ReportingServicesProvider;Integrated Security=True;TrustServerCertificate=True",
-                    SqlServer2012Dialect.Provider));
+            var connectionFactory = new OrmLiteConnectionFactory(
+                @"Data Source=(localdb)\ProjectsV13;Initial Catalog=ReportingServicesProvider;Integrated Security=True;TrustServerCertificate=True",
+                SqlServer2012Dialect.Provider);
+            //new OrmLiteConnectionFactory(":memory:", SqlliteDialect.Provider));
 
-            //container.Register<IDbConnectionFactory>(c =>
-            //    new OrmLiteConnectionFactory(":memory:", SqlliteDialect.Provider));
+            container.Register<IDbConnectionFactory>(connectionFactory);
         }
     }
 }

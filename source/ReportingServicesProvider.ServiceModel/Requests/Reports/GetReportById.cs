@@ -7,7 +7,7 @@ namespace ReportingServicesProvider.ServiceModel.Requests.Reports
     [Route("/Servers/{sid}/Reports/{id}", "Get")]
     public class GetReportById : IReturn<Report>
     {
-        public int SId { get; set; }
+        public int Sid { get; set; }
 
         [ApiMember(IsRequired = true)]
         public int Id { get; set; }

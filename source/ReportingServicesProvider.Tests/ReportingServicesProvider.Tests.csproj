@@ -74,10 +74,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="ServersServiceUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ReportingServicesProvider.Infrastructure\ReportingServicesProvider.Infrastructure.csproj">
+      <Project>{CAA5322A-7A02-4BD5-9DAE-5D2DB7F414EE}</Project>
+      <Name>ReportingServicesProvider.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ReportingServicesProvider.ServiceInterface\ReportingServicesProvider.ServiceInterface.csproj">
       <Project>{801a0f89-d5f6-49a6-bcea-6624388c98a4}</Project>
       <Name>ReportingServicesProvider.ServiceInterface</Name>

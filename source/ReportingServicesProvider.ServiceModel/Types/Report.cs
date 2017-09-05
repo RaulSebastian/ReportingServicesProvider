@@ -12,7 +12,7 @@ namespace ReportingServicesProvider.ServiceModel.Types
         public string Name { get; set; }
 
         [References(typeof(Server))]
-        public int ReportingServer { get; set; }
+        public int Server { get; set; }
 
         [Required]
         public string Path { get; set; }

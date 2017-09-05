@@ -47,9 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Requests\Reports\DeleteReportById.cs" />
     <Compile Include="Requests\Reports\GetReportById.cs" />
     <Compile Include="Requests\Reports\GetReportList.cs" />
     <Compile Include="Requests\Reports\PostReport.cs" />
+    <Compile Include="Requests\Reports\UpdateReportById.cs" />
     <Compile Include="Requests\Servers\DeleteServerById.cs" />
     <Compile Include="Requests\Servers\DeleteServerByName.cs" />
     <Compile Include="Requests\Servers\GetServerById.cs" />

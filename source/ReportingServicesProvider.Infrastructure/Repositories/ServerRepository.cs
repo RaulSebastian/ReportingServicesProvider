@@ -6,7 +6,7 @@ using ServiceStack.OrmLite;
 
 namespace ReportingServicesProvider.Infrastructure.Repositories
 {
-    public class ServerRepository
+    public class ServerRepository : IServerRepository
     {
         private readonly IDbConnectionFactory _dbFactory;
 
