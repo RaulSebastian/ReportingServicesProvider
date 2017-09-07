@@ -1,6 +1,7 @@
 ﻿using Funq;
 using ServiceStack;
 using ReportingServicesProvider.ServiceInterface;
+using ReportingServicesProvider.ServiceInterface.Repositories;
 using ServiceStack.Api.Swagger;
 using ServiceStack.Data;
 using ServiceStack.OrmLite;
@@ -35,9 +36,10 @@ namespace ReportingServicesProvider
             var connectionFactory = new OrmLiteConnectionFactory(
                 @"Data Source=(localdb)\ProjectsV13;Initial Catalog=ReportingServicesProvider;Integrated Security=True;TrustServerCertificate=True",
                 SqlServer2012Dialect.Provider);
-            //new OrmLiteConnectionFactory(":memory:", SqlliteDialect.Provider));
 
             container.Register<IDbConnectionFactory>(connectionFactory);
+            container.Register<IServersRepository>(new ServersRepository(connectionFactory));
+            container.Register<IReportsRepository>(new ReportsRepository(connectionFactory));
         }
     }
 }

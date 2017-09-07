@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.ServiceInterface", "ReportingServicesProvider.ServiceInterface\ReportingServicesProvider.ServiceInterface.csproj", "{801A0F89-D5F6-49A6-BCEA-6624388C98A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.Tests", "ReportingServicesProvider.Tests\ReportingServicesProvider.Tests.csproj", "{D22B5797-9F2A-4BA7-9636-6EFCE62EBE00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.ServiceInterface.Tests", "ReportingServicesProvider.Tests\ReportingServicesProvider.ServiceInterface.Tests.csproj", "{D22B5797-9F2A-4BA7-9636-6EFCE62EBE00}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documentation", "documentation", "{E3473803-8797-4AAA-9987-70658C58476D}"
 	ProjectSection(SolutionItems) = preProject
@@ -20,8 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.DbMigrations", "ReportingServicesProvider.DbMigrations\ReportingServicesProvider.DbMigrations.csproj", "{6673C302-4E42-4BDC-B301-73C60DEDFCF9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.ServiceModel.Tests", "ReportingServicesProvider.ServiceModel.Tests\ReportingServicesProvider.ServiceModel.Tests.csproj", "{BF48C102-7669-4D47-AF29-C786FD6BF56D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.Infrastructure", "ReportingServicesProvider.Infrastructure\ReportingServicesProvider.Infrastructure.csproj", "{CAA5322A-7A02-4BD5-9DAE-5D2DB7F414EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +51,6 @@ Global
 		{BF48C102-7669-4D47-AF29-C786FD6BF56D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF48C102-7669-4D47-AF29-C786FD6BF56D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF48C102-7669-4D47-AF29-C786FD6BF56D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CAA5322A-7A02-4BD5-9DAE-5D2DB7F414EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CAA5322A-7A02-4BD5-9DAE-5D2DB7F414EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CAA5322A-7A02-4BD5-9DAE-5D2DB7F414EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAA5322A-7A02-4BD5-9DAE-5D2DB7F414EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

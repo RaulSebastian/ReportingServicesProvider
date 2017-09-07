@@ -1,33 +1,40 @@
-﻿using System.Net;
-using System.Runtime.InteropServices;
-using ReportingServicesProvider.Infrastructure.Model.Reporting;
-using ReportingServicesProvider.Infrastructure.Repositories;
+﻿using System;
+using System.Net;
 using ServiceStack;
 using ServiceStack.Data;
 using ReportingServicesProvider.ServiceModel.Requests.Reports;
+using ReportingServicesProvider.ServiceInterface.Repositories;
 
 namespace ReportingServicesProvider.ServiceInterface
 {
     public class ReportsService : Service
     {
-        private readonly ReportRepository _reportRepository =
-            new ReportRepository(HostContext.Container.Resolve<IDbConnectionFactory>());
+        private readonly IReportsRepository _repository = HostContext.Container.Resolve<IReportsRepository>();
 
-        public object Get(GetReportList request) => _reportRepository.ReadAll().ToDto();
+        public object Get(GetReportList request) => _repository.GetAll();
 
-        public object Get(GetReportById request) => _reportRepository.Read(request.Id).ToDto();
+        public object Get(GetReportById request) => _repository.GetById(request.Id);
 
-        public object Post(PostReport request) => _reportRepository.Create(request.ToModel()).ToDto();
+        public object Post(PostReport request) => _repository.Save(request.ToDto());
 
         public object Put(UpdateReportById request)
         {
-            var existingReport = _reportRepository.Read(request.Id);
-            if (existingReport == null)
+            var report = request.ToDto();
+            if (!_repository.Exists(report))
             {
                 throw new HttpError(HttpStatusCode.NotFound, $"ReportId {request.Id} does not exist.");
             }
-            return _reportRepository.Update(request.ToModel()).ToDto();
+            return _repository.Save(report);
         }
-        public int Delete(DeleteReportById request) => _reportRepository.Delete(request.Id);
+
+        public int Delete(DeleteReportById request)
+        {
+            var report = request.ToDto();
+            if (!_repository.Exists(report))
+                return 0;
+            report.Name = $"{report.Name}_deleted_{DateTime.Now:yyyyMMddHHmmssmmm}";
+            _repository.Save(report);
+            return _repository.SetInactive(report);
+        }
     }
 }

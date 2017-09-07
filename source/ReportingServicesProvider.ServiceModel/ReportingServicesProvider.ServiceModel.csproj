@@ -47,9 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefaultValues.cs" />
     <Compile Include="Requests\Reports\DeleteReportById.cs" />
     <Compile Include="Requests\Reports\GetReportById.cs" />
     <Compile Include="Requests\Reports\GetReportList.cs" />
+    <Compile Include="Requests\Reports\Render.cs" />
     <Compile Include="Requests\Reports\PostReport.cs" />
     <Compile Include="Requests\Reports\UpdateReportById.cs" />
     <Compile Include="Requests\Servers\DeleteServerById.cs" />
@@ -65,7 +67,9 @@
     <Compile Include="Types\Report.cs" />
     <Compile Include="Types\Server.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Requests\RenderReport\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
