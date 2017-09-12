@@ -20,10 +20,10 @@ namespace ReportingServicesProvider.ServiceModel.Types
         [Required]
         public string Path { get; set; }
 
-        public DateTime Modified { get; set; }
+        public DateTime Modified { get; set; } = DateTime.Now;
 
         [Ignore]
-        public DateTime Created { get; set; } = DateTime.Now;
+        public DateTime Created { get; set; }
 
         [IgnoreDataMember]
         public bool Active { get; set; } = true;
