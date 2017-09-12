@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.ServiceInterface", "ReportingServicesProvider.ServiceInterface\ReportingServicesProvider.ServiceInterface.csproj", "{801A0F89-D5F6-49A6-BCEA-6624388C98A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.ServiceInterface.Tests", "ReportingServicesProvider.Tests\ReportingServicesProvider.ServiceInterface.Tests.csproj", "{D22B5797-9F2A-4BA7-9636-6EFCE62EBE00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportingServicesProvider.ServiceInterface.Tests", "ReportingServicesProvider.ServiceInterface.Tests\ReportingServicesProvider.ServiceInterface.Tests.csproj", "{D22B5797-9F2A-4BA7-9636-6EFCE62EBE00}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documentation", "documentation", "{E3473803-8797-4AAA-9987-70658C58476D}"
 	ProjectSection(SolutionItems) = preProject
