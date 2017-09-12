@@ -15,11 +15,11 @@ namespace ReportingServicesProvider.ServiceInterface.Repositories
             _dbFactory = dbFactory;
         }
 
-        public List<Report> GetAll()
+        public List<Report> GetAllByServerId(int serverId)
         {
             using (var db = _dbFactory.Open())
             {
-                return db.Select<Report>(r => r.Active);
+                return db.Select<Report>(r => r.Active && r.Server == serverId);
             }
         }
 

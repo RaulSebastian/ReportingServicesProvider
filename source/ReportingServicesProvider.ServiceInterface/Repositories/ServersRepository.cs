@@ -47,6 +47,16 @@ namespace ReportingServicesProvider.ServiceInterface.Repositories
             }
         }
 
+        public int Rename(Server server, string newName)
+        {
+            using (var db = _dbFactory.Open())
+            {
+                return db.UpdateOnly(new Server { Name = newName, Modified = DateTime.Now }
+                    , f => new { f.Name, f.Modified }
+                    , s => s.Id == server.Id);
+            }
+        }
+
         public Server Save(Server server)
         {
             using (var db = _dbFactory.Open())
@@ -64,6 +74,10 @@ namespace ReportingServicesProvider.ServiceInterface.Repositories
                     , f => new {f.Active, f.Modified}
                     , s => s.Id == server.Id);
             }
+        }
+
+        public void Dispose()
+        {
         }
     }
 }
