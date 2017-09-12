@@ -5,7 +5,7 @@ using ReportingServicesProvider.ServiceInterface.Repositories;
 using ReportingServicesProvider.ServiceModel.Requests.Servers;
 using ReportingServicesProvider.ServiceModel.Types;
 using ServiceStack;
-using ServiceStack.Data;
+using Platform = ReportingServicesProvider.ServiceModel.Types.Platform;
 
 namespace ReportingServicesProvider.ServiceInterface
 {
@@ -15,7 +15,7 @@ namespace ReportingServicesProvider.ServiceInterface
 
         public object Get(GetServerList request) => _repository.GetAll();
 
-        public object Get(GetServerNames request) => _repository.GetAll().Select(s => s.Name);
+        public object Get(GetServerNames request) => _repository.GetAll().Select(s => s.Name).ToList();
 
         public object Get(GetServerById request) => _repository.GetById(request.Id);
 
@@ -24,6 +24,11 @@ namespace ReportingServicesProvider.ServiceInterface
         public object Post(PostServer request)
         {
             var server = request.ToDto();
+            //move code to validation / exception handling
+            if(request.Platform != null && !Enum.IsDefined(typeof(Platform),request.Platform))
+            {
+                throw new HttpError(HttpStatusCode.NotFound, $"Platform {request.Platform.Value} not found.");
+            }
             if (_repository.Exists(server))
             {
                 throw new HttpError(HttpStatusCode.Ambiguous, $"A server mamed '{request.Name}' already exists.");
@@ -31,23 +36,14 @@ namespace ReportingServicesProvider.ServiceInterface
             return _repository.Save(server);
         }
 
-        public object Put(UpdateServerById request)
-        {
-            var server = request.ToDto();
-            if (_repository.Exists(server))
-            {
-                throw new HttpError(HttpStatusCode.NotFound, $"Server does not exist.");
-            }
-            return _repository.Save(server);
-        }
+        public object Put(UpdateServerById request) => _repository.Save(request.ToDto());
 
         private int MarkAsDeleted(Server server)
         {
             if (!_repository.Exists(server))
                 return 0;
 
-            server.Name = $"{server.Name}_deleted_{DateTime.Now:yyyyMMddHHmmssmmm}";
-            _repository.Save(server);
+            _repository.Rename(server, $"{server.Name}_deleted_{DateTime.Now:yyyyMMddHHmmssmmm}");
             return _repository.SetInactive(server);
         }
 
