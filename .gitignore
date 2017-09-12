@@ -288,3 +288,5 @@ __pycache__/
 *.xsd.cs
 
 source/ReportingServicesProvider/ServiceStackLicense\.txt
+
+source/ReportingServicesProvider\.ServiceInterface\.Tests/ServiceStackLicense\.txt
