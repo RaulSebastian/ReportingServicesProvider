@@ -27,11 +27,11 @@ namespace ReportingServicesProvider.ServiceInterface
             //move code to validation / exception handling
             if(request.Platform != null && !Enum.IsDefined(typeof(Platform),request.Platform))
             {
-                throw new HttpError(HttpStatusCode.NotFound, $"Platform {request.Platform.Value} not found.");
+                throw new HttpError(HttpStatusCode.NotFound, ExceptionMessages.PlatformNotFound);
             }
             if (_repository.Exists(server))
             {
-                throw new HttpError(HttpStatusCode.Ambiguous, $"A server mamed '{request.Name}' already exists.");
+                throw new HttpError(HttpStatusCode.Ambiguous, ExceptionMessages.ServerNameAmbigous);
             }
             return _repository.Save(server);
         }

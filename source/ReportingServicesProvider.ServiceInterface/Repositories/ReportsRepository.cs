@@ -39,6 +39,14 @@ namespace ReportingServicesProvider.ServiceInterface.Repositories
             }
         }
 
+        public bool ServerExists(Report report)
+        {
+            using (var db = _dbFactory.Open())
+            {
+                return db.Exists<Server>(s => s.Active && s.Id == report.Server);
+            }
+        }
+
         public Report Save(Report report)
         {
             using (var db = _dbFactory.Open())
@@ -56,6 +64,10 @@ namespace ReportingServicesProvider.ServiceInterface.Repositories
                     , f => new {f.Active, f.Modified}
                     , r => r.Id == report.Id);
             }
+        }
+
+        public void Dispose()
+        {
         }
     }
 }
