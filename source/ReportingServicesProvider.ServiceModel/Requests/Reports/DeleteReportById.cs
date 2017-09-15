@@ -12,6 +12,6 @@ namespace ReportingServicesProvider.ServiceModel.Requests.Reports
         public int Id { get; set; }
 
         [ApiMember(IsRequired = true)]
-        public int SId { get; set; }
+        public int Sid { get; set; }
     }
 }

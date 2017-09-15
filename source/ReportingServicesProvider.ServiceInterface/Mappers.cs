@@ -21,13 +21,13 @@ namespace ReportingServicesProvider.ServiceInterface
             => new Server().PopulateWith(from);
 
         public static Report ToDto(this PostReport from)
-            => new Report {Server = from.SId, Created = DateTime.Now}.PopulateWith(from);
+            => new Report {Server = from.Sid, Created = DateTime.Now}.PopulateWith(from);
 
         public static Report ToDto(this UpdateReportById from)
-            => new Report {Server = from.SId}.PopulateWith(from);
+            => new Report {Server = from.Sid}.PopulateWith(from);
         
         public static Report ToDto(this DeleteReportById from)
-            => new Report {Server = from.SId}.PopulateWith(from);
+            => new Report {Server = from.Sid}.PopulateWith(from);
         
     }
 }

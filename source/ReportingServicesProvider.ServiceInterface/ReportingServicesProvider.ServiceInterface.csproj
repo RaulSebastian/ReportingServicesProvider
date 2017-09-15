@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExceptionMessages.cs" />
     <Compile Include="Mappers.cs" />
     <Compile Include="ReportsService.cs" />
     <Compile Include="Repositories\IReportsRepository.cs" />
