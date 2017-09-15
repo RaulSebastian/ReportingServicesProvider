@@ -8,7 +8,7 @@ namespace ReportingServicesProvider.ServiceModel.Requests.Reports
     public class PostReport : IReturn<Report>
     {
         [ApiMember(IsRequired = true)]
-        public int SId { get; set; }
+        public int Sid { get; set; }
         
         [ApiMember(IsRequired = true)]
         public string Name { get; set; }

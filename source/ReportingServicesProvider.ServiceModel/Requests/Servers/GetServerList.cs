@@ -4,6 +4,7 @@ using ServiceStack;
 
 namespace ReportingServicesProvider.ServiceModel.Requests.Servers
 {
+    
     [Route("/Servers", "Get")]
     public class GetServerList : IReturn<List<Server>>
     {

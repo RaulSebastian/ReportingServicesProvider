@@ -7,9 +7,6 @@ using ServiceStack.Data;
 using ServiceStack.OrmLite;
 using ServiceStack.Text;
 
-//using ServiceStack.OrmLite;
-//using ServiceStack.OrmLite.SqlServer;
-
 namespace ReportingServicesProvider
 {
     public class AppHost : AppHostBase
